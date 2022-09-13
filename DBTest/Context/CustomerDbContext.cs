@@ -10,20 +10,24 @@ namespace DBTest.Context
 {
     public class CustomerDbContext : DbContext
     {
-        public DbSet<CustomerModel> Customers {get; set;}
+        public DbSet<Customer> Customers {get; set;}
 
         public string DbPath { get; }
 
         public CustomerDbContext()
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData; // locates the 'local' folder on the platform
-            var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "customers.db");
+            Database.EnsureCreated();
+            var FileName = "DbTestDatabse.db";
+            var DbPath = Path.Combine(Environment.CurrentDirectory, @"\", FileName); // Gets the applications current directory location
+            //var folder = Environment.SpecialFolder.LocalApplicationData;
+            //var path = Environment.GetFolderPath(folder);
+            //DbPath = System.IO.Path.Join(path, "customers.db");f
 
         }
 
         // Following configuers EF to create a SQLite database file in the 'special local' file.
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite($"Data Source={DbPath}");
+        
 
     }
 }

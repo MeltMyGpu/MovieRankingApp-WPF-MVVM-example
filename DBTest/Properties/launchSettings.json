@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DBTest": {
+      "commandName": "Project",
+      "workingDirectory": "D:\\CODE\\TestingForPettime\\DBTest"
+    }
+  }
+}
