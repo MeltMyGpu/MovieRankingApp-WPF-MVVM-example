@@ -57,3 +57,4 @@ E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-win
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\MovieRankingApp.pdb
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\MovieRankingApp.genruntimeconfig.cache
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\ref\MovieRankingApp.dll
+E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs

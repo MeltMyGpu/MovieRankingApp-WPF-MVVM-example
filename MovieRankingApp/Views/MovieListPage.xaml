@@ -4,12 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MovieRankingApp.Views"
-      xmlns:custom="clr-namespace:MovieRankingApp.Models"
+      xmlns:custom="clr-namespace:MovieRankingApp.ViewModels"
+      xmlns:custom1="clr-namespace:MovieRankingApp.Models"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="MovieListPage">
+    <Page.Resources>
+        <custom:MovieListViewModel x:Key="_movies"/>
+    </Page.Resources>
     <Grid>
-        <DataGrid x:Name="MovieListDataGrid" AutoGenerateColumns="True"/>
+        <DataGrid x:Name="MovieListDataGrid" DataContext="{StaticResource _movies}" ItemsSource="{Binding MovieListViewModel._movies}" AutoGenerateColumns="True"/>
 
 
     </Grid>

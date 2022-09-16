@@ -22,20 +22,20 @@ namespace MovieRankingApp.Views
     /// </summary>
     public partial class MovieListPage : Page
     {
-        MovieRankingDatabaseContext context;
+        //MovieRankingDatabaseContext context;
         public MovieListPage()
         {
             InitializeComponent();
             
         }
 
-        private void Window_loaded(object sender, RoutedEventArgs e)
-        {
-            context = new MovieRankingDatabaseContext();
-            context.MovieLists.Load();
-            this.DataContext = context.MovieLists.Local;
-            MovieListDataGrid.ItemsSource = context.MovieLists.Local;
+        //private void Window_loaded(object sender, RoutedEventArgs e)
+        //{
+        //    context = new MovieRankingDatabaseContext();
+        //    context.MovieLists.Load();
+        //    this.DataContext = context.MovieLists.Local;
+        //    MovieListDataGrid.ItemsSource = context.MovieLists.Local;
 
-        }
+        //}
     }
 }
