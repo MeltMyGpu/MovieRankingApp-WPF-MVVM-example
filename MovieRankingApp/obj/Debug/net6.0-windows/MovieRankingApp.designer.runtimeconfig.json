@@ -13,8 +13,7 @@
     ],
     "additionalProbingPaths": [
       "C:\\Users\\kiera\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\kiera\\.nuget\\packages",
-      "E:\\Code\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\kiera\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Reflection.NullabilityInfoContext.IsSupported": true,

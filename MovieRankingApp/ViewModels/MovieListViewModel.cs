@@ -1,88 +1,114 @@
-﻿using System;
+﻿using MovieRankingApp.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MovieRankingApp.Models;
-using Microsoft.EntityFrameworkCore;
 
-namespace MovieRankingApp.ViewModels
+namespace MovieRankingApp.Models
 {
-    public class MovieListViewModel
+    /// <summary>
+    /// The ViewModel for the MovieList model.
+    /// </summary>
+    public partial class MovieListViewModel : ObservableObject 
     {
-        private MovieRankingDatabaseContext _databaseContext;
-        private MovieList _movieList;
-        public MovieListViewModel()
+        /*
+        TO DO:
+        - Smol Score Property
+        - Tol Score Property
+        - MovieTotalScore => Derived from total scores of SScore and TScore.
+         */
+
+        /// <summary>
+        /// Constructor that creates a MovieList Model wrapped in this ViewModel
+        /// </summary>
+        /// <param name="model">
+        /// The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.
+        /// </param>
+        public MovieListViewModel(MovieList model = null) => Model = model ?? new MovieList();
+
+        private MovieList _model;
+
+        public long MovieId 
         {
-            _databaseContext = new MovieRankingDatabaseContext();
-            _movieList = new MovieList();
-            // Replace with DependacyInjection
+            get => Model.MovieId;
+            set
+            {
+                if (value != Model.MovieId)
+                {
+                    _model.MovieId = value;
+                    IsModified = true;
+                    RaisePropertyChangedEvent();
+                }
+            }
+        }
+        public string MovieName
+        {
+            get => Model.MovieName;
+            set
+            {
+                if (Model.MovieName != value)
+                {
+                    _model.MovieName = value;
+                    IsModified = true;
+                    RaisePropertyChangedEvent();
+                }
+            }
+        }
+        public string MovieGenre 
+        { 
+            get => Model.MovieGenre;
+            set 
+            {
+                if (Model.MovieGenre != value)
+                {
+                    Model.MovieGenre = value;
+                    IsModified = true;
+                    RaisePropertyChangedEvent();
+                }
+            }
+        } 
+        public string MovieReleaseDate
+        {
+            get => Model.MovieReleaseDate;
+            set
+            {
+                if(value != Model.MovieReleaseDate)
+                {
+                    Model.MovieReleaseDate = value;
+                    IsModified = true;
+                    RaisePropertyChangedEvent();
+                }
+            }
+        }
+        public long MovieTotalScore
+        {
+            get => Model.MovieTotalScore;
+            set
+            {
+                IsModified = true;
+                RaisePropertyChangedEvent();
+                // Requires Implementation
+            }
         }
 
-        private void GetList() // issues here loading invidual products
+        public virtual SmolScore? SmolScore { get; set; }
+
+        public virtual TolScore? TolScore { get; set; }
+
+        /// <summary>
+        /// Used to flag that data inside this object has been changed
+        /// </summary>
+        public bool IsModified { get; set; } 
+
+
+        public MovieList Model 
         {
-            _databaseContext.MovieLists.Load();
-            _movieList = _databaseContext.MovieLists.Local;
+            get => _model;
+            set
+            {
+                _model = value;
+                //raises propery changed event for all properties
+                RaisePropertyChangedEvent(string.Empty);
+            }
         }
-        //public long MovieId 
-        //{
-        //    get { return MovieId; }
-        //    set
-        //    {
-        //        if (MovieId != value)
-        //        {
-        //            MovieId = value;
-        //            //OnPropertyChanged("MovieId");
-        //        }
-        //    }
-        //}
-        //public string MovieName
-        //{
-        //    get { return MovieName; }
-        //    set
-        //    {
-        //        if (MovieName != value)
-        //        {
-        //            MovieName = value;
-        //            //OnPropertyChanged("MovieName");
-        //        }
-        //    }
-        //}
-        //public string MovieGenre
-        //{
-        //    get { return MovieGenre; }
-        //    set
-        //    {
-        //        if (MovieGenre != value)
-        //        {
-        //            MovieGenre = value;
-        //            //OnPropertyChanged("MovieId");
-        //        }
-        //    }
-        //}
-        //public string MovieReleaseDate
-        //{
-        //    get { return MovieReleaseDate; }
-        //    set
-        //    {
-        //        if(MovieReleaseDate != value)
-        //        {
-        //            MovieReleaseDate = value;
-        //            //prop change event call
-        //        }
-        //    }
-        //}
-        //public long MovieTotalScore
-        //{
-        //    get { return MovieTotalScore; }
-        //}
-
-        //public virtual SmolScore? SmolScore { get; set; }
-        //public virtual TolScore? TolScore { get; set; }
-
-        // End Region
-        // Region Private Helpers
-
 
     }
 }
