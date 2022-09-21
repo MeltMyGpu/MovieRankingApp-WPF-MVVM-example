@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="MovieRankingDatabase.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MovieRankingDatabase.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
