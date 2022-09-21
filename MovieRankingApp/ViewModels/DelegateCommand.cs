@@ -7,23 +7,31 @@ using System.Windows.Input;
 
 namespace MovieRankingApp.ViewModels
 {
-    public class DelegateCommand : ICommand 
+    public class DelegateCommand : ICommand
     {
-        public event EventHandler? CanExecuteChanged;
+        /*
+        This is what commands in the view are bound to.
+        TO DO:
+        - Implement CanExecute
+         */
 
-        public readonly Action _action;
+        private readonly Action Action;
+
+        public event EventHandler? CanExecuteChanged;
+        
         public DelegateCommand(Action action)
         {
-            _action = action;
+            Action = action;
         }
-        public bool CanExecute(object? parameter) //Implement properly
+
+        public bool CanExecute(object? parameter)
         {
             return true;
         }
 
         public void Execute(object? parameter)
         {
-            _action();
+            Action();
         }
     }
 }

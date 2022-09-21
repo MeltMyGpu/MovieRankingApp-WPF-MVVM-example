@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 namespace MovieRankingApp.Models
 {
     public partial class MovieRankingDatabaseContext : DbContext
-
     {
         public MovieRankingDatabaseContext()
         {
@@ -25,9 +24,22 @@ namespace MovieRankingApp.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //optionsBuilder.UseSqlite("DataSource=E:\\Code\\Project libary\\C#\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db");
-                optionsBuilder.UseSqlite("DataSource=D:\\CODE\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db");
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+                optionsBuilder.UseSqlite("DataSource=E:\\Code\\Project libary\\C#\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db");
+=======
+=======
+>>>>>>> Stashed changes
+                optionsBuilder.UseSqlite("DataSource=E:\\Code\\Project libary\\C#\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db"); // Home workstation connection string
+                //optionsBuilder.UseSqlite("DataSource=D:\\CODE\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db"); // Laptop connection string
 
+>>>>>>> Stashed changes
+=======
+                optionsBuilder.UseSqlite("DataSource=E:\\Code\\Project libary\\C#\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db"); // Home workstation connection string
+                //optionsBuilder.UseSqlite("DataSource=D:\\CODE\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db"); // Laptop connection string
+
+>>>>>>> Stashed changes
             }
         }
 
@@ -83,8 +95,5 @@ namespace MovieRankingApp.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-
-
     }
 }

@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using MovieRankingApp.ViewModels;
 
 namespace MovieRankingApp
 {
@@ -14,6 +13,5 @@ namespace MovieRankingApp
     /// </summary>
     public partial class App : Application
     {
-        
     }
 }
