@@ -11,12 +11,15 @@ using System.Collections.ObjectModel;
 namespace MovieRankingApp.ViewModels
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public class MovieListViewModel : ObservableObject
     {
         private MovieRankingDatabaseContext _databaseContext;
         public List<MovieList> _movies = new List<MovieList>();
         public MovieListViewModel()
 =======
+=======
+>>>>>>> Stashed changes
     public partial class MovieListViewModel : ObservableObject 
     {
         /*

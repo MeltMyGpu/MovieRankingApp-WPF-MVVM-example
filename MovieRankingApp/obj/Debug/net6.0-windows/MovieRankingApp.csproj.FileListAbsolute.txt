@@ -123,5 +123,8 @@ D:\CODE\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\MovieRankingA
 D:\CODE\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\bin\Debug\net6.0-windows\MovieRankingDatabase.db
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\MovieRankingApp_Content.g.cs
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs

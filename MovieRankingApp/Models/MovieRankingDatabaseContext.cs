@@ -25,8 +25,11 @@ namespace MovieRankingApp.Models
             if (!optionsBuilder.IsConfigured)
             {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 optionsBuilder.UseSqlite("DataSource=E:\\Code\\Project libary\\C#\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db");
 =======
+=======
+>>>>>>> Stashed changes
                 optionsBuilder.UseSqlite("DataSource=E:\\Code\\Project libary\\C#\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db"); // Home workstation connection string
                 //optionsBuilder.UseSqlite("DataSource=D:\\CODE\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db"); // Laptop connection string
 
