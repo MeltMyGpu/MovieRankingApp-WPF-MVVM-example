@@ -124,6 +124,9 @@ D:\CODE\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\GeneratedInte
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\bin\Debug\net6.0-windows\MovieRankingDatabase.db
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\obj\Debug\net6.0-windows\MovieRankingApp_Content.g.cs
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
