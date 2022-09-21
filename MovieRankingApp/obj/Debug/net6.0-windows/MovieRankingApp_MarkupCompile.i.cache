@@ -11,8 +11,13 @@ false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 E:\Code\Project libary\C#\TestingForPettime\MovieRankingApp\App.xaml
 2-238618837
+<<<<<<< Updated upstream
 
 14-353567047
+=======
+1-1429033610
+141806024932
+>>>>>>> Stashed changes
 212802326273
 MainWindow.xaml;Views\MovieListPage.xaml;
 
