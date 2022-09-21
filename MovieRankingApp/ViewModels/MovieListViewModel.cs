@@ -1,28 +1,12 @@
-﻿using System;
+﻿using MovieRankingApp.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using System.Threading.Tasks;
-using MovieRankingApp.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.ObjectModel;
 
-namespace MovieRankingApp.ViewModels
+namespace MovieRankingApp.Models
 {
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    public class MovieListViewModel : ObservableObject
-    {
-        private MovieRankingDatabaseContext _databaseContext;
-        public List<MovieList> _movies = new List<MovieList>();
-        public MovieListViewModel()
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+    /// <summary>
+    /// The ViewModel for the MovieList model.
+    /// </summary>
     public partial class MovieListViewModel : ObservableObject 
     {
         /*
@@ -30,7 +14,7 @@ namespace MovieRankingApp.ViewModels
         - Smol Score Property
         - Tol Score Property
         - MovieTotalScore => Derived from total scores of SScore and TScore.
-        */
+         */
 
         /// <summary>
         /// Constructor that creates a MovieList Model wrapped in this ViewModel
@@ -42,7 +26,6 @@ namespace MovieRankingApp.ViewModels
 
         private MovieList _model;
 
-        #region Derived model propertys
         public long MovieId 
         {
             get => Model.MovieId;
@@ -57,44 +40,64 @@ namespace MovieRankingApp.ViewModels
             }
         }
         public string MovieName
->>>>>>> Stashed changes
         {
-            _databaseContext = new MovieRankingDatabaseContext();
-            GetMovieList();
-            
-            // Replace with DependacyInjection
+            get => Model.MovieName;
+            set
+            {
+                if (Model.MovieName != value)
+                {
+                    _model.MovieName = value;
+                    IsModified = true;
+                    RaisePropertyChangedEvent();
+                }
+            }
         }
-
-        private void GetMovieList()
+        public string MovieGenre 
+        { 
+            get => Model.MovieGenre;
+            set 
+            {
+                if (Model.MovieGenre != value)
+                {
+                    Model.MovieGenre = value;
+                    IsModified = true;
+                    RaisePropertyChangedEvent();
+                }
+            }
+        } 
+        public string MovieReleaseDate
         {
-            _databaseContext.MovieLists.Load();
-            if (_databaseContext.MovieLists == null)
+            get => Model.MovieReleaseDate;
+            set
             {
-                return;
+                if(value != Model.MovieReleaseDate)
+                {
+                    Model.MovieReleaseDate = value;
+                    IsModified = true;
+                    RaisePropertyChangedEvent();
+                }
             }
-            _movies.Clear();
-            foreach (var m in _databaseContext.MovieLists)
+        }
+        public long MovieTotalScore
+        {
+            get => Model.MovieTotalScore;
+            set
             {
-                _movies.Add(m);
+                IsModified = true;
+                RaisePropertyChangedEvent();
+                // Requires Implementation
             }
-<<<<<<< Updated upstream
-
-=======
         }
 
         public virtual SmolScore? SmolScore { get; set; }
 
         public virtual TolScore? TolScore { get; set; }
-        #endregion
-
-        #region ViewModel Properties
-
 
         /// <summary>
         /// Used to flag that data inside this object has been changed
         /// </summary>
-        /// 
-        public bool IsModified { get; set; }
+        public bool IsModified { get; set; } 
+
 
         public MovieList Model 
         {
@@ -105,8 +108,7 @@ namespace MovieRankingApp.ViewModels
                 //raises propery changed event for all properties
                 RaisePropertyChangedEvent(string.Empty);
             }
->>>>>>> Stashed changes
         }
-        #endregion
+
     }
 }
