@@ -37,15 +37,15 @@ namespace MovieRankingApp.ViewModels
                     return;
 
                 movieList.Clear();
-                foreach (var Movie in TempListHolder)
-                {
-                    movieList.Add(new MovieListViewModel(Movie));
-                }
-                
+                TempListHolder.ForEach(x => movieList.Add(new MovieListViewModel(x)));
+ 
             }
         }
 
-        public ICommand UpdateMovieListDbCommand { get { return new DelegateCommand(UpdateMovieListDb); } }
+        public ICommand UpdateMovieListDbCommand 
+        { 
+            get => new DelegateCommand(UpdateMovieListDb); 
+        }
 
         private void UpdateMovieListDb()
         {

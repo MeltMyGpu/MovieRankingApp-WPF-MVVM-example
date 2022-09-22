@@ -12,18 +12,14 @@ namespace MovieRankingApp.ViewModels
         public event EventHandler? CanExecuteChanged;
 
         public readonly Action _action;
-        public DelegateCommand(Action action)
-        {
-            _action = action;
-        }
+        public DelegateCommand(Action action) => _action = action;
+
         public bool CanExecute(object? parameter) //Implement properly
         {
             return true;
         }
 
-        public void Execute(object? parameter)
-        {
-            _action();
-        }
+        public void Execute(object? parameter) => _action();
+
     }
 }

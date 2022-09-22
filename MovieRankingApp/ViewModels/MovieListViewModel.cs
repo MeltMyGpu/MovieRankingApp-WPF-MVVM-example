@@ -22,7 +22,9 @@ namespace MovieRankingApp.Models
         /// <param name="model">
         /// The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.
         /// </param>
-        public MovieListViewModel(MovieList model = null) => Model = model ?? new MovieList();
+        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        public MovieListViewModel(MovieList? model = null) => Model = model ?? new MovieList();
+        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         private MovieList _model;
 
