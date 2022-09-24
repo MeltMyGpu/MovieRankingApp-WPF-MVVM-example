@@ -14,6 +14,8 @@ namespace MovieRankingApp.ViewModels
         private MovieRankingDatabaseContext _databaseContext = new();
 
         public List<MovieListViewModel> movieList {get; set;}
+        public List<TolScoreViewModel> tolScores {get; set;}
+        public List<SmolScoreViewModel> smolScores {get; set;}
 
 
         public MovieListPageViewModel()
@@ -23,6 +25,7 @@ namespace MovieRankingApp.ViewModels
             // Replace with DependacyInjection
         }
 
+
         /// <summary>
         /// Gets all movies entries from the MovieList DbTable.
         /// loads models into a MovieListViewModel
@@ -31,17 +34,38 @@ namespace MovieRankingApp.ViewModels
         {
             using (_databaseContext)
             {
-                var TempListHolder = _databaseContext.MovieLists.ToList();
+                //_databaseContext.TolScores.Local.ToList()/*.ForEach(x => tolScores.Add(new TolScoreViewModel(x)))*/;
+                //var ss = _databaseContext.SmolScores.Local.ToList()/*.ForEach(x => smolScores.Add(new SmolScoreViewModel(x)))*/;    
+                foreach(var Movie in _databaseContext.MovieLists.ToList())
+                {
+                    long ts = 0;
+                    long ss = 0;
+                    if (_databaseContext.TolScores.ToList().Count >= Movie.MovieId)
+                    {
+                        ts = tolScores.FirstOrDefault(x => x == x).TotalScore;
+                    }
+                    if (smolScores.FirstOrDefault(x => x.MovieId == Movie.MovieId) != null)
+                    {
+                        ss = smolScores.FirstOrDefault(x => x.MovieId == Movie.MovieId).TotalScore;
+                    }
+                    
+                    
+                    MovieListViewModel ConstructionMovieList = new
+                        (
+                        Movie, ts, ss
+                        );
+                }
 
-                if (TempListHolder == null)
-                    return;
-
+<<<<<<< Updated upstream
                 movieList.Clear();
                 foreach (var Movie in TempListHolder)
                 {
                     movieList.Add(new MovieListViewModel(Movie));
                 }
                 
+=======
+ 
+>>>>>>> Stashed changes
             }
         }
 

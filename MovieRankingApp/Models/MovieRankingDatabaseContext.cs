@@ -63,14 +63,14 @@ namespace MovieRankingApp.Models
 
             modelBuilder.Entity<TolScore>(entity =>
             {
-                entity.HasKey(e => e.RatingId);
+                entity.HasKey(e => e.ScoreId);
 
                 entity.ToTable("TolScore");
 
                 entity.HasIndex(e => e.MovieId, "IX_TolScore_MovieId")
                     .IsUnique();
 
-                entity.HasIndex(e => e.RatingId, "IX_TolScore_RatingId")
+                entity.HasIndex(e => e.ScoreId, "IX_TolScore_RatingId")
                     .IsUnique();
 
                 entity.HasOne(d => d.Movie)

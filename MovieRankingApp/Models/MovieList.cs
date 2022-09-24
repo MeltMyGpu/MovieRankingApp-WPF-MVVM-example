@@ -11,7 +11,7 @@ namespace MovieRankingApp.Models
         public string MovieReleaseDate { get; set; } = null!;
         public long MovieTotalScore { get; set; }
 
-        public virtual SmolScore? SmolScore { get; set; }
-        public virtual TolScore? TolScore { get; set; }
+        public virtual SmolScore SmolScore { get; set; }
+        public virtual TolScore TolScore { get; set; } 
     }
 }

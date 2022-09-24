@@ -11,9 +11,7 @@ namespace MovieRankingApp.Models
     {
         /*
         TO DO:
-        - Smol Score Property
-        - Tol Score Property
-        - MovieTotalScore => Derived from total scores of SScore and TScore.
+        - Score Weightinh
          */
 
         /// <summary>
@@ -22,9 +20,39 @@ namespace MovieRankingApp.Models
         /// <param name="model">
         /// The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.
         /// </param>
+<<<<<<< Updated upstream
         public MovieListViewModel(MovieList model = null) => Model = model ?? new MovieList();
+=======
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        public MovieListViewModel(MovieList? model = null, long? TolScore = null, long? SmolScore = null)
+        {
+            _smolScore = SmolScore ?? 0;
+            _tolScore = TolScore ?? 0;
+            Model = model ?? new MovieList();
+        }
+
+        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+>>>>>>> Stashed changes
 
         private MovieList _model;
+        private long _smolScore;
+        private long _tolScore;
+        //private readonly TolScoreViewModel _tolScoreViewModel;
+        //private SmolScoreViewModel _smolScoreViewModel;
+
+        public bool IsModified { get; set; }
+
+
+        public MovieList Model
+        {
+            get => _model;
+            set
+            {
+                _model = value;
+                //raises propery changed event for all properties
+                RaisePropertyChangedEvent(string.Empty);
+            }
+        }
 
         public long MovieId 
         {
@@ -83,32 +111,29 @@ namespace MovieRankingApp.Models
             get => Model.MovieTotalScore;
             set
             {
-                IsModified = true;
+                _model.MovieTotalScore = (SmolScore + TolScore) / 2;
                 RaisePropertyChangedEvent();
-                // Requires Implementation
             }
         }
 
-        public virtual SmolScore? SmolScore { get; set; }
-
-        public virtual TolScore? TolScore { get; set; }
-
-        /// <summary>
-        /// Used to flag that data inside this object has been changed
-        /// </summary>
-        public bool IsModified { get; set; } 
-
-
-        public MovieList Model 
-        {
-            get => _model;
+        public long SmolScore
+        { 
+            get => _smolScore;
             set
             {
-                _model = value;
-                //raises propery changed event for all properties
-                RaisePropertyChangedEvent(string.Empty);
-            }
+                _smolScore = value;
+                RaisePropertyChangedEvent();
+            } 
         }
 
+        public long TolScore 
+        { 
+            get => _tolScore;
+            set
+            {
+                _tolScore = value;
+                RaisePropertyChangedEvent();
+            } 
+        }
     }
 }
