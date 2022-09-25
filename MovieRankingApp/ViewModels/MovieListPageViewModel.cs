@@ -14,13 +14,15 @@ namespace MovieRankingApp.ViewModels
         private MovieRankingDatabaseContext _databaseContext = new();
 
         public List<MovieListViewModel> movieList {get; set;}
-        public List<TolScoreViewModel> tolScores {get; set;}
-        public List<SmolScoreViewModel> smolScores {get; set;}
+        //public List<TolScoreViewModel> tolScores {get; set;}
+        //public List<SmolScoreViewModel> smolScores {get; set;}
 
 
         public MovieListPageViewModel()
         {
             movieList = new List<MovieListViewModel>();
+            //tolScores = new List<TolScoreViewModel>();
+            //smolScores = new List<SmolScoreViewModel>();
             GetMovieList();
             // Replace with DependacyInjection
         }
@@ -34,38 +36,21 @@ namespace MovieRankingApp.ViewModels
         {
             using (_databaseContext)
             {
-                //_databaseContext.TolScores.Local.ToList()/*.ForEach(x => tolScores.Add(new TolScoreViewModel(x)))*/;
-                //var ss = _databaseContext.SmolScores.Local.ToList()/*.ForEach(x => smolScores.Add(new SmolScoreViewModel(x)))*/;    
+                // I know this is messy as fuck, but it works, leave me alone.
+                _databaseContext.TolScores.Load();
+                _databaseContext.SmolScores.Load();
                 foreach(var Movie in _databaseContext.MovieLists.ToList())
                 {
-                    long ts = 0;
-                    long ss = 0;
-                    if (_databaseContext.TolScores.ToList().Count >= Movie.MovieId)
-                    {
-                        ts = tolScores.FirstOrDefault(x => x == x).TotalScore;
-                    }
-                    if (smolScores.FirstOrDefault(x => x.MovieId == Movie.MovieId) != null)
-                    {
-                        ss = smolScores.FirstOrDefault(x => x.MovieId == Movie.MovieId).TotalScore;
-                    }
-                    
-                    
-                    MovieListViewModel ConstructionMovieList = new
+                    movieList.Add( new MovieListViewModel
                         (
-                        Movie, ts, ss
+                        Movie, 
+                        new TolScoreViewModel(_databaseContext.TolScores.Local.FirstOrDefault(x => x.MovieId == Movie.MovieId)),
+                        new SmolScoreViewModel(_databaseContext.SmolScores.Local.FirstOrDefault(x => x.MovieId == Movie.MovieId))
+                        )
                         );
+
                 }
 
-<<<<<<< Updated upstream
-                movieList.Clear();
-                foreach (var Movie in TempListHolder)
-                {
-                    movieList.Add(new MovieListViewModel(Movie));
-                }
-                
-=======
- 
->>>>>>> Stashed changes
             }
         }
 

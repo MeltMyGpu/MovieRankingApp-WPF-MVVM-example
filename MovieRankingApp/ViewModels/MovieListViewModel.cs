@@ -20,23 +20,19 @@ namespace MovieRankingApp.Models
         /// <param name="model">
         /// The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.
         /// </param>
-<<<<<<< Updated upstream
-        public MovieListViewModel(MovieList model = null) => Model = model ?? new MovieList();
-=======
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public MovieListViewModel(MovieList? model = null, long? TolScore = null, long? SmolScore = null)
+        public MovieListViewModel(MovieList? model = null, TolScoreViewModel? TolScore = null, SmolScoreViewModel? SmolScore = null)
         {
-            _smolScore = SmolScore ?? 0;
-            _tolScore = TolScore ?? 0;
+            _smolScore = SmolScore ?? new SmolScoreViewModel();
+            _tolScore = TolScore ?? new TolScoreViewModel();
             Model = model ?? new MovieList();
         }
 
         #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
->>>>>>> Stashed changes
 
         private MovieList _model;
-        private long _smolScore;
-        private long _tolScore;
+        private SmolScoreViewModel _smolScore;
+        private TolScoreViewModel _tolScore;
         //private readonly TolScoreViewModel _tolScoreViewModel;
         //private SmolScoreViewModel _smolScoreViewModel;
 
@@ -111,29 +107,19 @@ namespace MovieRankingApp.Models
             get => Model.MovieTotalScore;
             set
             {
-                _model.MovieTotalScore = (SmolScore + TolScore) / 2;
+                _model.MovieTotalScore = (_smolScore.TotalScore + _tolScore.TotalScore) / 2;
                 RaisePropertyChangedEvent();
             }
         }
 
         public long SmolScore
         { 
-            get => _smolScore;
-            set
-            {
-                _smolScore = value;
-                RaisePropertyChangedEvent();
-            } 
+            get => _smolScore.TotalScore;
         }
 
         public long TolScore 
         { 
-            get => _tolScore;
-            set
-            {
-                _tolScore = value;
-                RaisePropertyChangedEvent();
-            } 
+            get => _tolScore.TotalScore;
         }
     }
 }
