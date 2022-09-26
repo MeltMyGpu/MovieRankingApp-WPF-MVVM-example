@@ -12,8 +12,17 @@
         <custom:MovieListPageViewModel/>
     </Page.DataContext>
     <Grid>
-        <DataGrid x:Name="MovieListDataGrid" ItemsSource="{Binding movieList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <DataGrid x:Name="MovieListDataGrid" SelectedItem="{Binding SelectedMovieList, Mode=OneWay}" ItemsSource="{Binding movieList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Movie ID" Binding="{Binding MovieId}"/>
+                <DataGridTextColumn Header="Movie name" Binding="{Binding MovieName}" />
+                <DataGridTextColumn Header="Movie Genre" Binding="{Binding MovieGenre}" />
+                <DataGridTextColumn Header="Movie Release Date" Binding="{Binding MovieReleaseDate}"/>
+                <DataGridTextColumn Header="Movie Total Score" Binding="{Binding MovieTotalScore}" />
+                <DataGridTextColumn Header="Smol Total Score" Binding="{Binding SmolTotalScore}" />
+                <DataGridTextColumn Header="Tol Total Score" Binding="{Binding TolTotalScore}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Content="Button" HorizontalAlignment="Left" Margin="147,401,0,0" VerticalAlignment="Top" Command="{Binding UpdateMovieListDbCommand}"/>
-
     </Grid>
 </Page>
