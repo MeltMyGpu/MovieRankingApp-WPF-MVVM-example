@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,13 +42,16 @@ namespace MovieRankingApp.ViewModels
                 foreach(var Movie in _databaseContext.MovieLists.ToList())
                 {
                     movieList.Add( new MovieListViewModel
+                        // Now causes a stack overflow on assignment --> not sure why
                         (
                         Movie, 
-                        new TolScoreViewModel(_databaseContext.TolScores.Local.FirstOrDefault(x => x.MovieId == Movie.MovieId)),
-                        new SmolScoreViewModel(_databaseContext.SmolScores.Local.FirstOrDefault(x => x.MovieId == Movie.MovieId))
+                        _databaseContext.TolScores.Local.FirstOrDefault(x => x.MovieId == Movie.MovieId)?.MovieId ?? 0L,
+                        _databaseContext.SmolScores.Local.FirstOrDefault(x => x.MovieId == Movie.MovieId)?.MovieId ?? 0L
                         )
                         );
-
+                    // var Tscore = _databaseContext.TolScores.Local.Where(x => x.MovieId == Movie.MovieId).Select(x => x.TotalScore);
+                    // var Tscore = _databaseContext.TolScores.Local.FirstOrDefault(x => x.MovieId == Movie.MovieId)?.TotalScore ?? 0;
+                    
                 }
 
             }

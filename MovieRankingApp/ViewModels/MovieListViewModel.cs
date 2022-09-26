@@ -17,29 +17,27 @@ namespace MovieRankingApp.Models
         /// <summary>
         /// Constructor that creates a MovieList Model wrapped in this ViewModel
         /// </summary>
+        /// <param name="tolScore"> The total score from the TolScore model linked to the movie</param>
+        /// <param name="smolScore"> The total score from the SmolScore model linked to the movie</param>
         /// <param name="model">
         /// The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.
         /// </param>
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public MovieListViewModel(MovieList? model = null, TolScoreViewModel? TolScore = null, SmolScoreViewModel? SmolScore = null)
+        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        public MovieListViewModel(MovieList? model = null, long tolScore = 0L , long smolScore = 0L)
         {
-            _smolScore = SmolScore ?? new SmolScoreViewModel();
-            _tolScore = TolScore ?? new TolScoreViewModel();
+            SmolTotalScore = smolScore;
+            TolTotalScore = tolScore;
             Model = model ?? new MovieList();
         }
 
         #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         private MovieList _model;
-        private SmolScoreViewModel _smolScore;
-        private TolScoreViewModel _tolScore;
-        //private readonly TolScoreViewModel _tolScoreViewModel;
-        //private SmolScoreViewModel _smolScoreViewModel;
-
-        public bool IsModified { get; set; }
+        /// <summary> allows altered models to be found quickly with query for saving/ updating database <\summary>
+        public bool IsModified { get; set; } // needs to  be hidden from the datagrid 
 
 
-        public MovieList Model
+        public MovieList Model // needs to  be hidden from the datagrid
         {
             get => _model;
             set
@@ -107,19 +105,23 @@ namespace MovieRankingApp.Models
             get => Model.MovieTotalScore;
             set
             {
-                _model.MovieTotalScore = (_smolScore.TotalScore + _tolScore.TotalScore) / 2;
+                _model.MovieTotalScore = (SmolTotalScore + TolTotalScore) / 2;
                 RaisePropertyChangedEvent();
             }
         }
 
-        public long SmolScore
+        private long _smolTotalScore;
+        private long _tolTotalScore;
+        public long SmolTotalScore
         { 
-            get => _smolScore.TotalScore;
+            get => _smolTotalScore;
+            set => _smolTotalScore = value;
         }
 
-        public long TolScore 
+        public long TolTotalScore 
         { 
-            get => _tolScore.TotalScore;
+            get => _tolTotalScore;
+            set => _tolTotalScore = value;
         }
     }
 }
