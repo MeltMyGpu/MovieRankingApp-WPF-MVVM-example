@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using MovieRankingApp.Models.Interfaces;
 
 namespace MovieRankingApp.Models
 {
-    public partial class MovieRankingDatabaseContext : DbContext 
+    public partial class MovieRankingDatabaseContext : DbContext, IMovieRankingDatabaseContext
     {
+        #region Entity Generated Code
         public MovieRankingDatabaseContext()
         {
         }
@@ -83,7 +85,21 @@ namespace MovieRankingApp.Models
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
+        #endregion
 
+
+
+
+        #region Exposed Endpoints for DbContext Methods
+
+        public void DoSaveChanges()
+        {
+            this.SaveChanges();
+        }
+
+
+
+        #endregion
 
     }
 }

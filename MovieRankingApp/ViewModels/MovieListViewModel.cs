@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 namespace MovieRankingApp.Models
 {
-    /// <summary>
-    /// The ViewModel for the MovieList model.
-    /// </summary>
     public partial class MovieListViewModel : ObservableObject 
     {
         /*
@@ -22,15 +19,12 @@ namespace MovieRankingApp.Models
         /// <param name="model">
         /// The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.
         /// </param>
-        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public MovieListViewModel(MovieList? model = null, long tolScore = 0L , long smolScore = 0L)
         {
             SmolTotalScore = smolScore;
             TolTotalScore = tolScore;
             Model = model ?? new MovieList();
         }
-
-        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         private MovieList _model;
         /// <summary> allows altered models to be found quickly with query for saving/ updating database <\summary>

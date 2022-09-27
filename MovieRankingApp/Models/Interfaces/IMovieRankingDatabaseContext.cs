@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace MovieRankingApp.Models
+namespace MovieRankingApp.Models.Interfaces
 {
     public interface IMovieRankingDatabaseContext : IDisposable
     {
@@ -9,6 +9,6 @@ namespace MovieRankingApp.Models
         DbSet<SmolScore> SmolScores { get; set; }
         DbSet<TolScore> TolScores { get; set; }
 
-        void SaveChanges();
+        void DoSaveChanges();
     }
 }
