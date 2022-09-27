@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using MovieRankingApp.Models;
 using MovieRankingApp.Models.Interfaces;
+using MovieRankingApp.ViewModels.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Windows.Input;
 
 namespace MovieRankingApp.ViewModels
 {
-    /* TODO or Important.
-     Current switch towards Dependency injection may require re-writting of code using _databaseContext
-     */
 
-    public class MovieListPageViewModel : ObservableObject
+
+    /* TODO or Important.
+Current switch towards Dependency injection may require re-writting of code using _databaseContext
+*/
+
+    public class MovieListPageViewModel : ObservableObject, IMovieListPageViewModel
     {
         private IMovieRankingDatabaseContext _databaseContext;
 
@@ -69,7 +72,7 @@ namespace MovieRankingApp.ViewModels
 
 
         // Wont be needed on this view, kept here as code storage //
-        public ICommand UpdateMovieListDbCommand { get => new DelegateCommand(UpdateMovieListDb);  }
+        public ICommand UpdateMovieListDbCommand { get => new DelegateCommand(UpdateMovieListDb); }
 
         private void UpdateMovieListDb()
         {

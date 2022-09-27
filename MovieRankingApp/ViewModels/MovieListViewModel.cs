@@ -9,6 +9,7 @@ namespace MovieRankingApp.Models
         /*
         TO DO:
         - Score Weightinh
+        - constructor model null issue
          */
 
         /// <summary>
@@ -16,9 +17,7 @@ namespace MovieRankingApp.Models
         /// </summary>
         /// <param name="tolScore"> The total score from the TolScore model linked to the movie</param>
         /// <param name="smolScore"> The total score from the SmolScore model linked to the movie</param>
-        /// <param name="model">
-        /// The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.
-        /// </param>
+        /// <param name="model">The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.</param>
         public MovieListViewModel(MovieList? model = null, long tolScore = 0L , long smolScore = 0L)
         {
             SmolTotalScore = smolScore;
@@ -26,7 +25,8 @@ namespace MovieRankingApp.Models
             Model = model ?? new MovieList();
         }
 
-        private MovieList _model;
+        private MovieList _model; // sort out null differance later
+
         /// <summary> allows altered models to be found quickly with query for saving/ updating database <\summary>
         public bool IsModified { get; set; } // needs to  be hidden from the datagrid 
 
