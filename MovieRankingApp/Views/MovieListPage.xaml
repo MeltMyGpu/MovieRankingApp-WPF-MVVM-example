@@ -9,7 +9,7 @@
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="MovieListPage">
     <Page.DataContext>
-        <custom:MovieListPageViewModel/>
+        <StaticResource VmLocator />
     </Page.DataContext>
     <Grid>
         <DataGrid x:Name="MovieListDataGrid" SelectedItem="{Binding SelectedMovieList, Mode=OneWay}" ItemsSource="{Binding movieList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
