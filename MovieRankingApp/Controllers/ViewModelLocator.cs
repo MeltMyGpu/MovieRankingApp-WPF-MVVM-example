@@ -6,11 +6,11 @@ namespace MovieRankingApp.Controllers
 {
     public class ViewModelLocator
     {
-        public MovieListPageViewModel MovieListPageViewModel
+        public static IMovieListPageViewModel? MovieListPageViewModel
         {
-            get => (MovieListPageViewModel)App.serviceProvider.GetService(typeof(MovieListPageViewModel));
+            // get => App.AppHost!.Services.GetService(TypeOf(MovieListPageViewModel)); 
             // GetRequiredService<MovieListPageViewModel>()
-            
+            get;
         }
     }
 }

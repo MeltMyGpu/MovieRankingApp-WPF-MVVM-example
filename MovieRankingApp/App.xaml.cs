@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MovieRankingApp.StartUpHelpers;
 using System.Windows;
 using MovieRankingApp.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +6,6 @@ using MovieRankingApp.Models;
 using Microsoft.EntityFrameworkCore;
 using MovieRankingApp.ViewModels.Interfaces;
 using MovieRankingApp.Models.Interfaces;
-using MovieRankingApp.Models;
 using Microsoft.Extensions.Hosting;
 using MovieRankingApp.Controllers;
 

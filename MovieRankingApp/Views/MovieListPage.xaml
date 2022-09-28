@@ -7,9 +7,10 @@
       xmlns:custom="clr-namespace:MovieRankingApp.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
-      Title="MovieListPage">
+      Title="MovieListPage"
+      >
     <Page.DataContext>
-        <StaticResource VmLocator />
+        <Binding Path="MovieListPageViewModel" Source="StaticResource VmLocator"/>
     </Page.DataContext>
     <Grid>
         <DataGrid x:Name="MovieListDataGrid" SelectedItem="{Binding SelectedMovieList, Mode=OneWay}" ItemsSource="{Binding movieList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
