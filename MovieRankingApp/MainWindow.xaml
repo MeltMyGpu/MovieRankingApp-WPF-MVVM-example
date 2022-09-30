@@ -11,6 +11,6 @@
 
     </Grid>
     <Window.DataContext>
-        <local1:MovieListPageViewModel/>
+        <Binding Source="StaticResource VmLocator"/>
     </Window.DataContext>
 </Window>

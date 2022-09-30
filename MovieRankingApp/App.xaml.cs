@@ -24,7 +24,8 @@ public partial class App : Application
         AppHost = Host.CreateDefaultBuilder()
             .ConfigureServices((hostContext, services) =>
             {
-                services.AddTransient<IMovieRankingDatabaseContext, MovieRankingDatabaseContext>();
+                services.AddTransient<IMovieListPageViewModel, MovieListPageViewModel>();
+                services.AddViewModelFactory<IMovieRankingDatabaseContext, MovieRankingDatabaseContext>();
                 services.AddScoped<IMovieListPageViewModel, MovieListPageViewModel>();
                 services.AddScoped<ViewModelLocator>();
                 services.AddSingleton<MainWindow>();
