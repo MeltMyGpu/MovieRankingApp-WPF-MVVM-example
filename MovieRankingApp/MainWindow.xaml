@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MovieRankingApp"
         xmlns:local1="clr-namespace:MovieRankingApp.ViewModels"
+        xmlns:Pages="clr-namespace:MovieRankingApp.Views"
         mc:Ignorable="d"
+
         Title="MainWindow" Height="720" Width="1280">
     <Grid>
-
+        <Frame Source="../Views/MovieListPage.xaml" ></Frame>
     </Grid>
     <Window.DataContext>
         <Binding Source="StaticResource VmLocator"/>
     </Window.DataContext>
+    
 </Window>

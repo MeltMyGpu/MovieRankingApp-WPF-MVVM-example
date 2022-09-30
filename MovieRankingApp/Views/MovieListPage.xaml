@@ -8,10 +8,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="MovieListPage"
+      DataContext="{Binding MovieListPageViewModel, Source={StaticResource ViewModelLocator}}"
       >
-    <Page.DataContext>
+    <!--<Page.DataContext>
         <Binding Path="MovieListPageViewModel" Source="StaticResource VmLocator"/>
-    </Page.DataContext>
+    </Page.DataContext>-->
     <Grid>
         <DataGrid x:Name="MovieListDataGrid" SelectedItem="{Binding SelectedMovieList, Mode=OneWay}" ItemsSource="{Binding movieList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
             <DataGrid.Columns>

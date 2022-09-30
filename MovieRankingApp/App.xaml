@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MovieRankingApp"
              xmlns:local1="clr-namespace:MovieRankingApp.Controllers"
+             xmlns:vm="clr-namespace:MovieRankingApp.Controllers"
              >
     <Application.Resources>
-        <local1:ViewModelLocator x:Key="VmLocator"/>
+        <vm:ViewModelLocator x:Key="ViewModelLocator" />
     </Application.Resources>
 </Application>

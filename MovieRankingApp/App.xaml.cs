@@ -21,26 +21,32 @@ public partial class App : Application
 
     public App()
     {
+        // Configuration of Dependency Injection
         AppHost = Host.CreateDefaultBuilder()
             .ConfigureServices((hostContext, services) =>
             {
                 services.AddTransient<IMovieListPageViewModel, MovieListPageViewModel>();
-                services.AddViewModelFactory<IMovieRankingDatabaseContext, MovieRankingDatabaseContext>();
+                services.AddDbContext<IMovieRankingDatabaseContext, MovieRankingDatabaseContext>();
                 services.AddScoped<IMovieListPageViewModel, MovieListPageViewModel>();
-                services.AddScoped<ViewModelLocator>();
+                services.AddSingleton<ViewModelLocator>();
                 services.AddSingleton<MainWindow>();
             })
             .Build();
+
+        /* Application resources must be declared in code as well as in xaml,
+        /  just declaring in xaml throw and error when resource is accessed */
+        Resources = new ResourceDictionary(); 
+        Resources.Add("ViewModelLocator", AppHost.Services.GetRequiredService<ViewModelLocator>());
     }
 
     protected override async void OnStartup(StartupEventArgs startupArgs)
     {
+        
+        base.OnStartup(startupArgs);
         await AppHost!.StartAsync(); // ensures the host is started before the app displays
         var StartUpPage = AppHost.Services.GetRequiredService<MainWindow>(); 
         // need to override app entry point to an injected version of main window to ensure dependecys are resolved.
         StartUpPage.Show();
-        
-        base.OnStartup(startupArgs);
     }
 
 
