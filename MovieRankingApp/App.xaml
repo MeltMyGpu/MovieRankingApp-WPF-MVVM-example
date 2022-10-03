@@ -5,7 +5,11 @@
              xmlns:local1="clr-namespace:MovieRankingApp.Controllers"
              xmlns:vm="clr-namespace:MovieRankingApp.Controllers"
              >
+    
     <Application.Resources>
+        
         <vm:ViewModelLocator x:Key="ViewModelLocator" />
+        
     </Application.Resources>
+    
 </Application>

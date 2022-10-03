@@ -1,10 +1,11 @@
 ﻿using MovieRankingApp.ViewModels;
+using MovieRankingApp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 
 namespace MovieRankingApp.Models
 {
-    public partial class MovieListViewModel : ObservableObject 
+    public partial class MovieListViewModel : ObservableObject, IMovieListViewModel
     {
         /*
         TO DO:
@@ -18,7 +19,7 @@ namespace MovieRankingApp.Models
         /// <param name="tolScore"> The total score from the TolScore model linked to the movie</param>
         /// <param name="smolScore"> The total score from the SmolScore model linked to the movie</param>
         /// <param name="model">The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.</param>
-        public MovieListViewModel(MovieList? model = null, long tolScore = 0L , long smolScore = 0L)
+        public MovieListViewModel(MovieList? model = null, long tolScore = 0L, long smolScore = 0L)
         {
             SmolTotalScore = smolScore;
             TolTotalScore = tolScore;
@@ -42,7 +43,7 @@ namespace MovieRankingApp.Models
             }
         }
 
-        public long MovieId 
+        public long MovieId
         {
             get => Model.MovieId;
             set
@@ -68,10 +69,10 @@ namespace MovieRankingApp.Models
                 }
             }
         }
-        public string MovieGenre 
-        { 
+        public string MovieGenre
+        {
             get => Model.MovieGenre;
-            set 
+            set
             {
                 if (Model.MovieGenre != value)
                 {
@@ -80,13 +81,13 @@ namespace MovieRankingApp.Models
                     RaisePropertyChangedEvent();
                 }
             }
-        } 
+        }
         public string MovieReleaseDate
         {
             get => Model.MovieReleaseDate;
             set
             {
-                if(value != Model.MovieReleaseDate)
+                if (value != Model.MovieReleaseDate)
                 {
                     Model.MovieReleaseDate = value;
                     IsModified = true;
@@ -107,13 +108,13 @@ namespace MovieRankingApp.Models
         private long _smolTotalScore;
         private long _tolTotalScore;
         public long SmolTotalScore
-        { 
+        {
             get => _smolTotalScore;
             set => _smolTotalScore = value;
         }
 
-        public long TolTotalScore 
-        { 
+        public long TolTotalScore
+        {
             get => _tolTotalScore;
             set => _tolTotalScore = value;
         }
