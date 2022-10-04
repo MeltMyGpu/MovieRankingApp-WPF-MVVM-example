@@ -28,6 +28,7 @@ public partial class App : Application
                 services.AddTransient<IMovieListPageViewModel, MovieListPageViewModel>();
                 services.AddDbContext<IMovieRankingDatabaseContext, MovieRankingDatabaseContext>();
                 services.AddScoped<IMovieListPageViewModel, MovieListPageViewModel>();
+                services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
                 services.AddSingleton<ViewModelLocator>();
                 services.AddSingleton<MainWindow>();
             })

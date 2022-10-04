@@ -13,21 +13,16 @@ namespace MovieRankingApp.Controllers;
 /// </summary>
 public class ViewModelLocator 
 {
-    public static MovieListPageViewModel? MovieListPageViewModel
+    public static IMovieListPageViewModel? MovieListPageViewModel
     {
         get => (MovieListPageViewModel?)App.AppHost!.Services.GetService(typeof(IMovieListPageViewModel));
     }
-
-
-    // Currently not in use, may be used to allow for navigation
-    public string EditPage
+    
+    public static IMainWindowViewModel? MainWindowViewModel
     {
-        get => "../Views/"; // needs setting
+        get => (MainWindowViewModel?)App.AppHost!.Services.GetService(typeof(IMainWindowViewModel));
     }
 
-    public string StartingPage
-    {
-        get => "../Views/MovieListPage.xmal";
-    }
+ 
     
 }

@@ -7,8 +7,13 @@
         xmlns:local1="clr-namespace:MovieRankingApp.ViewModels"
         xmlns:Pages="clr-namespace:MovieRankingApp.Views"
         mc:Ignorable="d"
+        DataContext="{Binding MainWindowViewModel , Source={StaticResource ViewModelLocator}}"
+        WindowStyle="ToolWindow"
+        Title="MainWindow" Height="720" Width="1280" >
+    <Window.Background>
+        <SolidColorBrush Color="#8F26B3" />
+    </Window.Background>
 
-        Title="MainWindow" Height="720" Width="1280">
     <Window.Resources>
         <RadialGradientBrush 
                 x:Key="GrayRadial"
@@ -20,13 +25,25 @@
                 <GradientStop Color="DimGray" Offset="1.0" />
             </RadialGradientBrush.GradientStops>
         </RadialGradientBrush>
-
+        
+        <SolidColorBrush x:Key="DarkPurpleSolid" Color="#8F26B3" />
     </Window.Resources>
-    <Grid>
-        <Frame Source="../Views/MovieListPage.xaml" ></Frame>
+    
+    <Grid x:Name="MainWinPageSplit">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.9*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid x:Name="MainWinLeftMenu" 
+             Background="{StaticResource DarkPurpleSolid}">
+            <Border BorderBrush="{StaticResource DarkPurpleSolid}" BorderThickness="1"/>
+        </Grid>
+
+        <Frame x:Name="PageViewFrame" Source="../Views/MovieListPage.xaml" Grid.Column="2" Margin="0,10,10,10"> 
+            
+        </Frame>
     </Grid>
-    <Window.DataContext>
-        <Binding Source="StaticResource VmLocator"/>
-    </Window.DataContext>
+
     
 </Window>

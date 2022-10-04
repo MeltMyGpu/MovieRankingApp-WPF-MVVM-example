@@ -10,7 +10,6 @@
       Title="MovieListPage"
       DataContext="{Binding MovieListPageViewModel, Source={StaticResource ViewModelLocator}}"
       >
-
     <Page.Resources>
         
         <Style TargetType="Button" x:Key="TopInteractionButtons">
@@ -63,20 +62,22 @@
             Center="0.5,0.5"
             RadiusX="0.8" RadiusY="0.8">
             <RadialGradientBrush.GradientStops>
-                <GradientStop Color="DarkGray" Offset="0" />
-                <GradientStop Color="DimGray" Offset="1.0" />
+                <GradientStop Color="#E4E7EB" Offset="0" />
+                <GradientStop Color="#DDF5F6" Offset="1.0" />
             </RadialGradientBrush.GradientStops>
         </RadialGradientBrush>
     </Page.Background>
-
+    
+    <Page.OpacityMask>
+        <VisualBrush Visual="{Binding ElementName=CornerMask}"/>
+    </Page.OpacityMask>
+    
     <Grid>
+        
+    <Border Name="CornerMask" Background="White" CornerRadius="10" />
         <StackPanel VerticalAlignment="top">
-            
-            <Label HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="30" Foreground="GhostWhite" >
-                <Label.Content>The SMOTOL movie ranking app</Label.Content>
-            </Label>
-            
-            <Grid Margin="20,20,20,0" >
+
+            <!--<Grid Margin="2,2,2,0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.2*" />
                     <ColumnDefinition Width="0.2*" />
@@ -85,14 +86,18 @@
                 <Button Grid.Column="1" x:Name="RemoveSelectedEntry" Content="Delete Entry" Style="{StaticResource ResourceKey=TopInteractionButtons}"/>
                 <Button Grid.Column="2" x:Name="NewEntryButton" Content="Add new Entry" Style="{StaticResource ResourceKey=TopInteractionButtons}"/>
                 <Button x:Name="OpenSelectedButton" Content="Open detailed view" Style="{StaticResource ResourceKey=TopInteractionButtons}"/>
-            </Grid>
+            </Grid>-->
             
             <DataGrid x:Name="MovieListDataGrid" 
                       SelectedItem="{Binding SelectedMovieList, Mode=OneWay}" 
                       ItemsSource="{Binding movieList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" 
                       AutoGenerateColumns="False"
-                      Margin="20,0,20,0"
+                      
                       >
+                <DataGrid.OpacityMask>
+                    <VisualBrush Visual="{Binding ElementName=CornerMask}"/>
+                </DataGrid.OpacityMask>
+             
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Movie ID" Binding="{Binding MovieId}" Width="0.05*" />
                     <DataGridTextColumn Header="Movie name" Binding="{Binding MovieName}" Width="0.15*"/>
@@ -105,4 +110,5 @@
             </DataGrid>
         </StackPanel>
     </Grid>
+    
 </Page>
