@@ -1,9 +1,10 @@
-﻿using MovieRankingApp.ViewModels;
+﻿
+using MovieRankingApp.Models;
 using MovieRankingApp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace MovieRankingApp.Models
+namespace MovieRankingApp.ViewModels
 {
     public partial class MovieListViewModel : ObservableObject, IMovieListViewModel
     {
@@ -23,7 +24,7 @@ namespace MovieRankingApp.Models
         {
             SmolTotalScore = smolScore;
             TolTotalScore = tolScore;
-            Model = model ?? new MovieList();
+            _model = model ?? new MovieList();
         }
 
         private MovieList _model; // sort out null differance later
@@ -76,7 +77,7 @@ namespace MovieRankingApp.Models
             {
                 if (Model.MovieGenre != value)
                 {
-                    Model.MovieGenre = value;
+                    _model.MovieGenre = value;
                     IsModified = true;
                     RaisePropertyChangedEvent();
                 }
@@ -89,7 +90,7 @@ namespace MovieRankingApp.Models
             {
                 if (value != Model.MovieReleaseDate)
                 {
-                    Model.MovieReleaseDate = value;
+                    _model.MovieReleaseDate = value;
                     IsModified = true;
                     RaisePropertyChangedEvent();
                 }
@@ -118,5 +119,6 @@ namespace MovieRankingApp.Models
             get => _tolTotalScore;
             set => _tolTotalScore = value;
         }
+       
     }
 }
