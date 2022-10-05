@@ -28,7 +28,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
 
 
     #region Data Binding Properties and fields
-
+    
     /// <summary>
     /// Frame within main window binds its source to this, allowing for 
     /// buttons binded to commands to change the uri and therefore hange page
@@ -54,7 +54,7 @@ public class MainWindowViewModel : ObservableObject, IMainWindowViewModel
     }
 
     #endregion
-
+    
     #region Command Bindings 
 
     /// <summary>

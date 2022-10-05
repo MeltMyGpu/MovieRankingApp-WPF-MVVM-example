@@ -31,7 +31,6 @@ public class MovieListPageViewModel : ObservableObject, IMovieListPageViewModel
             _selectedMovieList = value;
         }
     }
-
     /// <summary>
     /// Initates class via a call to 'GetMovieList'
     /// This ensures that the class will alwasy load the data from database.

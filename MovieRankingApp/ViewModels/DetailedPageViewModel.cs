@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using MovieRankingApp.Models.Interfaces;
 using MovieRankingApp.ViewModels.Interfaces;
 
@@ -6,6 +7,11 @@ namespace MovieRankingApp.ViewModels;
 
 public class DetailedPageViewModel
 {
+    /*
+    TODO:
+    - Change calls to async or move calls external
+    - Interface
+    */
     public DetailedPageViewModel(IMainWindowViewModel mainWinViewModel, IMovieRankingDatabaseContext dbContext)
     {
         this._DbContext = dbContext;
@@ -55,5 +61,12 @@ public class DetailedPageViewModel
             MovieReleaseDate = "00/00/0000",
             MovieTotalScore = 0
         });
+    }
+
+    private void LoadSpecificModels()
+    {
+        MovieModel = _MainWindowViewModel.SelectedModel;
+        TolScoreModel = new TolScoreViewModel(_DbContext.TolScores.ToList().FirstOrDefault(x => x.MovieId == MovieModel.MovieId));
+        SmolScoreModel = new SmolScoreViewModel(_DbContext.SmolScores.ToList().FirstOrDefault(x => x.MovieId == MovieModel.MovieId));
     }
 }
