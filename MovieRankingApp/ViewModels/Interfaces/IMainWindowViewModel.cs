@@ -6,7 +6,9 @@ namespace MovieRankingApp.ViewModels
     public interface IMainWindowViewModel
     {
         string MainFrameDisplayUri { get; }
-        ICommand NavigateToSecondView { get; }
+        bool CurrentlyEditing { get; set; }
+        ICommand NavigateToEditDetailedView { get; }
+        ICommand NavigateToAddDeatailedView { get; }
         MovieListViewModel SelectedModel { get; set; }
     }
 }
