@@ -5,7 +5,7 @@ namespace MovieRankingApp.Models
 {
     public partial class TolScore
     {
-        public long RatingId { get; set; }
+        public long ScoreId { get; set; }
         public long MovieId { get; set; }
         public long ActingScore { get; set; }
         public long CharacterScore { get; set; }
@@ -13,6 +13,7 @@ namespace MovieRankingApp.Models
         public long VisualEffectsScore { get; set; }
         public long PlotScore { get; set; }
         public long WorldScore { get; set; }
+        public long TotalScore { get; set; }
 
         public virtual MovieList Movie { get; set; } = null!;
     }

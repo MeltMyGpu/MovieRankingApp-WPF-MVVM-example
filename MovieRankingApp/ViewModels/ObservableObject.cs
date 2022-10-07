@@ -12,7 +12,7 @@ namespace MovieRankingApp.ViewModels
     public abstract class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        protected void RaisePropertyChangedEvent([CallerMemberName] string propertyName = null) =>
+        protected void RaisePropertyChangedEvent([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         //{
         //    var handler = PropertyChanged;

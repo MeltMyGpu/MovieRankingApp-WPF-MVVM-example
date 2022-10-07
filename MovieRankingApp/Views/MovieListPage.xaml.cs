@@ -26,20 +26,6 @@ namespace MovieRankingApp.Views
         public MovieListPage()
         {
             InitializeComponent();
-            //var context = new MovieListViewModel();
-            //this.DataContext = context;
-            //MovieListDataGrid.ItemsSource = context.movieList;
-
-
-        }
-
-        private void Window_loaded(object sender, RoutedEventArgs e)
-        {
-            //context = new MovieRankingDatabaseContext();
-            //context.MovieLists.Load();
-            //this.DataContext = context.MovieLists.Local;
-            //MovieListDataGrid.ItemsSource = context.MovieLists.Local;
-
         }
     }
 }

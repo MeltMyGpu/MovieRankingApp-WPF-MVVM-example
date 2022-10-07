@@ -13,6 +13,7 @@ namespace MovieRankingApp.Models
         public long EffectScore { get; set; }
         public long PlotScore { get; set; }
         public long WorldScore { get; set; }
+        public long TotalScore { get; set; }
 
         public virtual MovieList Movie { get; set; } = null!;
     }

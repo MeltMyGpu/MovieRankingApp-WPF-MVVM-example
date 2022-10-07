@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using MovieRankingApp.Models.Interfaces;
 
 namespace MovieRankingApp.Models
 {
-    public partial class MovieRankingDatabaseContext : DbContext
-
+    public partial class MovieRankingDatabaseContext : DbContext, IMovieRankingDatabaseContext
     {
+        #region Entity Generated Code
         public MovieRankingDatabaseContext()
         {
         }
@@ -25,8 +26,8 @@ namespace MovieRankingApp.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("DataSource=E:\\Code\\Project libary\\C#\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db");
-               // optionsBuilder.UseSqlite("DataSource=D:\\CODE\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db");
+                //optionsBuilder.UseSqlite("DataSource=E:\\Code\\Project libary\\C#\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db");
+                optionsBuilder.UseSqlite("DataSource=D:\\CODE\\TestingForPettime\\MovieRankingApp\\MovieRankingDatabase.db");
 
             }
         }
@@ -63,14 +64,14 @@ namespace MovieRankingApp.Models
 
             modelBuilder.Entity<TolScore>(entity =>
             {
-                entity.HasKey(e => e.RatingId);
+                entity.HasKey(e => e.ScoreId);
 
                 entity.ToTable("TolScore");
 
                 entity.HasIndex(e => e.MovieId, "IX_TolScore_MovieId")
                     .IsUnique();
 
-                entity.HasIndex(e => e.RatingId, "IX_TolScore_RatingId")
+                entity.HasIndex(e => e.ScoreId, "IX_TolScore_RatingId")
                     .IsUnique();
 
                 entity.HasOne(d => d.Movie)
@@ -84,7 +85,21 @@ namespace MovieRankingApp.Models
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
+        #endregion
 
+
+
+
+        #region Exposed Endpoints for DbContext Methods
+
+        public void DoSaveChanges()
+        {
+            this.SaveChanges();
+        }
+
+
+
+        #endregion
 
     }
 }

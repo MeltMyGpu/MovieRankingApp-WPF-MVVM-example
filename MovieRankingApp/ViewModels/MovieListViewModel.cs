@@ -1,34 +1,50 @@
-﻿using MovieRankingApp.ViewModels;
+﻿
+using MovieRankingApp.Models;
+using MovieRankingApp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace MovieRankingApp.Models
+namespace MovieRankingApp.ViewModels
 {
-    /// <summary>
-    /// The ViewModel for the MovieList model.
-    /// </summary>
-    public partial class MovieListViewModel : ObservableObject 
+    public partial class MovieListViewModel : ObservableObject, IMovieListViewModel
     {
         /*
         TO DO:
-        - Smol Score Property
-        - Tol Score Property
-        - MovieTotalScore => Derived from total scores of SScore and TScore.
+        - Score Weightinh
+        - constructor model null issue
          */
 
         /// <summary>
         /// Constructor that creates a MovieList Model wrapped in this ViewModel
         /// </summary>
-        /// <param name="model">
-        /// The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.
-        /// </param>
-        #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public MovieListViewModel(MovieList? model = null) => Model = model ?? new MovieList();
-        #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+        /// <param name="tolScore"> The total score from the TolScore model linked to the movie</param>
+        /// <param name="smolScore"> The total score from the SmolScore model linked to the movie</param>
+        /// <param name="model">The Model data handed by the load, set to 'null' if no data is handed, causing a new blank 'MovieList' to be wrapped.</param>
+        public MovieListViewModel(MovieList? model = null, long tolScore = 0L, long smolScore = 0L)
+        {
+            SmolTotalScore = smolScore;
+            TolTotalScore = tolScore;
+            _model = model ?? new MovieList();
+        }
 
-        private MovieList _model;
+        private MovieList _model; // sort out null differance later
 
-        public long MovieId 
+        /// <summary> allows altered models to be found quickly with query for saving/ updating database <\summary>
+        public bool IsModified { get; set; } // needs to  be hidden from the datagrid 
+
+
+        public MovieList Model // needs to  be hidden from the datagrid
+        {
+            get => _model;
+            set
+            {
+                _model = value;
+                //raises propery changed event for all properties
+                RaisePropertyChangedEvent(string.Empty);
+            }
+        }
+
+        public long MovieId
         {
             get => Model.MovieId;
             set
@@ -54,27 +70,27 @@ namespace MovieRankingApp.Models
                 }
             }
         }
-        public string MovieGenre 
-        { 
+        public string MovieGenre
+        {
             get => Model.MovieGenre;
-            set 
+            set
             {
                 if (Model.MovieGenre != value)
                 {
-                    Model.MovieGenre = value;
+                    _model.MovieGenre = value;
                     IsModified = true;
                     RaisePropertyChangedEvent();
                 }
             }
-        } 
+        }
         public string MovieReleaseDate
         {
             get => Model.MovieReleaseDate;
             set
             {
-                if(value != Model.MovieReleaseDate)
+                if (value != Model.MovieReleaseDate)
                 {
-                    Model.MovieReleaseDate = value;
+                    _model.MovieReleaseDate = value;
                     IsModified = true;
                     RaisePropertyChangedEvent();
                 }
@@ -85,32 +101,24 @@ namespace MovieRankingApp.Models
             get => Model.MovieTotalScore;
             set
             {
-                IsModified = true;
+                _model.MovieTotalScore = (SmolTotalScore + TolTotalScore) / 2;
                 RaisePropertyChangedEvent();
-                // Requires Implementation
             }
         }
 
-        public virtual SmolScore? SmolScore { get; set; }
-
-        public virtual TolScore? TolScore { get; set; }
-
-        /// <summary>
-        /// Used to flag that data inside this object has been changed
-        /// </summary>
-        public bool IsModified { get; set; } 
-
-
-        public MovieList Model 
+        private long _smolTotalScore;
+        private long _tolTotalScore;
+        public long SmolTotalScore
         {
-            get => _model;
-            set
-            {
-                _model = value;
-                //raises propery changed event for all properties
-                RaisePropertyChangedEvent(string.Empty);
-            }
+            get => _smolTotalScore;
+            set => _smolTotalScore = value;
         }
 
+        public long TolTotalScore
+        {
+            get => _tolTotalScore;
+            set => _tolTotalScore = value;
+        }
+       
     }
 }
